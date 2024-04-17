@@ -6,9 +6,10 @@ import PersonalInfoForm from "../components/individual-account/PersonalInfoForm"
 import ResidencyInfoForm from "../components/individual-account/ResidencyInfoForm";
 import TeamForm from "../components/individual-account/TeamForm";
 import Success from "../components/individual-account/Success";
+import StepTracker from "../components/individual-account/StepTracker";
 
 export default function CreateIndividual() {
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(0);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -25,22 +26,10 @@ export default function CreateIndividual() {
 
   return (
     <PageWrapper pageDescription={data.individualAccount[step]}>
-      <div className="w-full h-full flex flex-col justify-center">
-        {step < 3 && (
-          <div className="flex w-full justify-between">
-            <div onClick={() => setStep((prev) => prev - 1)} className="text-gray text-[16px] font-[600]">&larr; Back</div>
-            <div className="flex flex-col">
-              <span className="text-[#BDBDBD] font-[500] text-[14px]">
-                STEP {(step + 1).toString().padStart(2, "0")}/
-                {data.steps.length.toString().padStart(2, "0")}
-              </span>
-              <span className="text-[16px] font-[600] text-gray">{data.steps[step]}</span>
-            </div>
-          </div>
-        )}
+      <div className="w-full min-h-full flex flex-col justify-center overflow-auto">
+        {step < 3 && <StepTracker step={step} setStep={setStep} />}
         {componentsByStep[step]}
-
-        <div className="mb-auto"></div>
+        <div className="mt-auto"></div>
       </div>
     </PageWrapper>
   );

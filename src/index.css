@@ -12,17 +12,23 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-@layer components{
-  .link{
-    @apply text-[#1565D8]
+@layer components {
+  .link {
+    @apply text-[#1565D8];
   }
-  .text-gray{
-    @apply text-[#8692A6]
+  .text-gray {
+    @apply text-[#8692A6];
+  }
+  .form-label {
+    @apply text-[#696F79] text-[16px];
+  }
+  .form-input {
+    @apply border h-[64px] px-5 rounded outline-blue-500 text-[14px];
   }
 }
