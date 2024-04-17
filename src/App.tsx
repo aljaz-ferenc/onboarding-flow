@@ -1,6 +1,7 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import SignUpPage from "./pages/SignUpPage";
 import CreateIndividual from "./pages/CreateIndividual";
+import AccountInfoContextProvider from "./context/AccountInfoContext";
 
 function App() {
   const router = createBrowserRouter([
@@ -15,8 +16,10 @@ function App() {
   ]);
 
   return (
-    <RouterProvider router={router}/>
-  )
+    <AccountInfoContextProvider>
+      <RouterProvider router={router} />
+    </AccountInfoContextProvider>
+  );
 }
 
-export default App
+export default App;
