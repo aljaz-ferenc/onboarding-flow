@@ -17,3 +17,12 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+@layer components{
+  .link{
+    @apply text-[#1565D8]
+  }
+  .text-gray{
+    @apply text-[#8692A6]
+  }
+}

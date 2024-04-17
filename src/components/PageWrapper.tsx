@@ -18,7 +18,7 @@ export default function PageWrapper({
           <PageDescription text={pageDescription} />
         </div>
       </div>
-      <div className="h-full w-[55%] overflow-x-hidden relative">
+      <div className="h-full w-[55%] overflow-x-hidden relative p-[3vw]">
         {children}
       </div>
     </div>
