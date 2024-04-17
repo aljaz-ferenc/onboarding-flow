@@ -29,6 +29,6 @@
     @apply text-[#696F79] text-[16px];
   }
   .form-input {
-    @apply border h-[64px] px-5 rounded outline-blue-500 text-[14px];
+    @apply border border-[#8692A6] h-[64px] px-5 rounded outline-blue-500 text-[14px] focus:shadow-lg;
   }
 }

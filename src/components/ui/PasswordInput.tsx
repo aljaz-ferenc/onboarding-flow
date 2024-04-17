@@ -44,7 +44,7 @@ export default function PasswordInput({
           className="cursor-pointer mx-2"
           onClick={() => setShow((prev) => !prev)}
         >
-          {show ? "Show" : "Hide"}
+          {show ? "Hide" : "Show"}
         </span>
       </div>
       {error && <small className="text-red-500">{error}</small>}
