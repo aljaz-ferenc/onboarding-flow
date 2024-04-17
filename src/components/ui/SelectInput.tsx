@@ -19,16 +19,18 @@ export default function SelectInput({
 }: SelectInputProps) {
   return (
     <div className="flex flex-col gap-2">
-      <label className={error ? "text-red-500" : ""} htmlFor={name}>
+      <label
+        className={`${error ? "text-red-500" : ""} form-label`}
+        htmlFor={name}
+      >
         {label}
         {required && <span className="text-red-500">*</span>}
       </label>
-      <select
-        className="border px-2 py-3 rounded outline-blue-500"
-        {...register(name)}
-      >
+      <select className="form-input" {...register(name)}>
         <optgroup label="Country">
-          <option value="">Please select</option>
+          <option value="" className="text-gray">
+            Please select
+          </option>
           {options.map((option, i) => (
             <option key={i} value={option.value}>
               {option.text.toString()}
