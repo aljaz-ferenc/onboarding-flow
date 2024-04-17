@@ -1,7 +1,12 @@
-import React from 'react'
+import data from "../data/data.json";
+import PageWrapper from "../components/PageWrapper";
 
 export default function CreateIndividual() {
   return (
-    <div>CreateIndividual</div>
-  )
+    <PageWrapper pageDescription={data.individualAccount[0]}>
+      <div className="">
+        CreateIndividual page
+      </div>
+    </PageWrapper>
+  );
 }

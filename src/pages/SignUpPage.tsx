@@ -1,10 +1,6 @@
-import React from 'react'
-import { Outlet } from 'react-router-dom'
+import PageWrapper from "../components/PageWrapper";
+import data from "../data/data.json";
 
 export default function SignUpPage() {
-  return (
-    <div>
-        SignUpPage
-    </div>
-  )
+  return <PageWrapper pageDescription={data.join}>Signup page</PageWrapper>;
 }
