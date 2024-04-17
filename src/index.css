@@ -32,3 +32,15 @@
     @apply border border-[#8692A6] h-[64px] px-5 rounded outline-blue-500 text-[14px] focus:shadow-lg;
   }
 }
+
+.draw {
+  stroke-dasharray: 100; /* total length of the path */
+  stroke-dashoffset: 100; /* offset to fully hide the path initially */
+  animation: drawPath 2s ease forwards; /* adjust animation duration as needed */
+}
+
+@keyframes drawPath {
+  to {
+    stroke-dashoffset: 0; /* animate to fully reveal the path */
+  }
+}
