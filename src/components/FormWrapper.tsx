@@ -10,7 +10,6 @@ type FormWrapperProps = {
   variants: "next" | "previous" | null;
   step: number;
   index: number;
-  previous: number;
 };
 
 //adds styled header and footer, receives input fields as children
@@ -26,7 +25,7 @@ export default function FormWrapper({
       className=" p-1 absolute left-[50%] translate-x-[-50%] opacity-0"
       transition={{ ease: easeOut }}
       initial={{
-        x: "-400%",
+        x: "400%",
       }}
       animate={{
         x: step === index ? "-50%" : step > index ? "-400%" : "400%",
