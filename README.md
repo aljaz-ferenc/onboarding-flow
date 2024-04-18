@@ -46,3 +46,5 @@ Run the development server
 npm run dev
 ```
 Navigate to `http://localhost:5173/` in your browser.
+
+After submitting the final form, the payload that would be sent to the server will be logged in the console.
