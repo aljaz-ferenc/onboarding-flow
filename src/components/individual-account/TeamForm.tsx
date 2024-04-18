@@ -9,6 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import * as api from "../../api";
 import { AccountInfo } from "../../types";
+import { BallTriangle } from "react-loader-spinner";
 
 const emailSchema = z.object({
   team: z.array(
@@ -91,7 +92,10 @@ export default function TeamForm({setStep}: TeamForProps) {
             <span>Add teammate</span>
           </button>
         )}
-        <FormSubmitButton>Save & Continue</FormSubmitButton>
+        <FormSubmitButton
+          loadingSpinner={<BallTriangle width={50} height={50} color="#1565D8"/>}
+          isLoading={isFetching}
+        >Save & Continue</FormSubmitButton>
       </form>
     </FormWrapper>
   );
