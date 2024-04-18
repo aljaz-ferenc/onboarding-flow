@@ -1,7 +1,7 @@
 import { PropsWithChildren, createContext, useContext, useState } from "react";
 import {
+  AccountInfo,
   AccountType,
-  Country,
   PersonalInfo,
   ResidencyInfo,
   Team,
@@ -13,17 +13,6 @@ type AccountInfoContextType = {
   setPersonalInfo: (info: PersonalInfo) => void;
   setResidencyInfo: (info: ResidencyInfo) => void;
   setTeam: (team: Team) => void;
-};
-
-type AccountInfo = {
-  accountType: AccountType | '';
-  name: string;
-  email: string;
-  password: string;
-  terms: boolean;
-  address: string;
-  country: Country | '';
-  team: Team;
 };
 
 const initialValue: AccountInfo = {

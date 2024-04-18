@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import FormWrapper from "../FormWrapper";
 import { FieldValues, useFieldArray, useForm } from "react-hook-form";
 import trashIcon from "/public/trash.svg";
@@ -7,6 +7,8 @@ import FormSubmitButton from "../ui/FormSubmitButton";
 import { useAccountInfoContext } from "../../context/AccountInfoContext";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import * as api from "../../api";
+import { AccountInfo } from "../../types";
 
 const emailSchema = z.object({
   team: z.array(
@@ -16,7 +18,12 @@ const emailSchema = z.object({
   ),
 });
 
-export default function TeamForm() {
+type TeamForProps = {
+  setStep: React.Dispatch<React.SetStateAction<number>>;
+};
+
+export default function TeamForm({setStep}: TeamForProps) {
+  const [isFetching, setIsFetching] = useState(false)
   const ctx = useAccountInfoContext()
   
   const {
@@ -27,12 +34,25 @@ export default function TeamForm() {
   } = useForm({ resolver: zodResolver(emailSchema)});
   const { fields, append, remove } = useFieldArray({ control, name: "team"});
   
-  function onSubmit({team}: FieldValues) {
+  async function onSubmit({team}: FieldValues) {
     if(!ctx) return
+    
     const emails = team.map((member: {email: string}) => member.email)
     ctx.setTeam(emails)
-
-    console.log({...ctx.info, team: emails})
+    
+    const payload: AccountInfo = {...ctx.info, team: emails}
+    
+    try{
+      setIsFetching(true)
+      const data = await api.registerUser(payload)
+      console.log(data)
+      setStep(prev => prev + 1)
+    }catch(err){
+      console.error(err)
+      setStep(prev => prev + 1) //the request will fail but in this case we still move to the success page
+    }finally{
+      setIsFetching(false)
+    }
   }
 
   return (

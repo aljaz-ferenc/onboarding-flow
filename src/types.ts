@@ -8,3 +8,13 @@ export type PersonalInfo = {
 };
 export type ResidencyInfo = { address: string; country: Country };
 export type Team = string[];
+export type AccountInfo = {
+  accountType: AccountType | '';
+  name: string;
+  email: string;
+  password: string;
+  terms: boolean;
+  address: string;
+  country: Country | '';
+  team: Team;
+};
