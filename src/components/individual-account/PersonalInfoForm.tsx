@@ -13,13 +13,13 @@ type PersonalInfoFormProps = {
   setStep: React.Dispatch<React.SetStateAction<number>>;
 };
 
+//at least one uppercase letter, one lowercase letter, one number, one special characters, at least 6 chars
 const passwordValidation = new RegExp(
-  //one uppercase, one lowercase, one number, one special, at least 6 chars
-  /(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{6,}$/
+  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{6,}$/
 );
 
 const formSchema = z.object({
-  name: z.string().min(1, { message: "Required" }),
+  name: z.string().min(5, { message: "Must be at least 5 characters long" }),
   email: z.string().email(),
   password: z
     .string()
