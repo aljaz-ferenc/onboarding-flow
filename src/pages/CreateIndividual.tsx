@@ -1,6 +1,6 @@
 import data from "../data/data.json";
 import PageWrapper from "../components/PageWrapper";
-import { useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PersonalInfoForm from "../components/individual-account/PersonalInfoForm";
 import ResidencyInfoForm from "../components/individual-account/ResidencyInfoForm";
@@ -10,8 +10,6 @@ import Success from "../components/individual-account/Success";
 import FormWrapper from "../components/FormWrapper";
 
 export default function CreateIndividual() {
-  const stepRef = useRef(0);
-  const previousRef = useRef(0);
   const navigate = useNavigate();
   const [variants, setVariants] = useState<"next" | "previous" | null>(null);
   const [step, setStep] = useState(0);
@@ -21,21 +19,13 @@ export default function CreateIndividual() {
   }, [step]);
 
   function nextStep() {
-    previousRef.current = stepRef.current;
     setVariants("next");
-    setStep((prev) => {
-      previousRef.current = prev;
-      return prev + 1;
-    });
+    setStep((prev) => prev + 1);
   }
 
   function previousStep() {
-    previousRef.current = stepRef.current;
     setVariants("previous");
-    setStep((prev) => {
-      previousRef.current = prev;
-      return prev - 1;
-    });
+    setStep((prev) => prev - 1);
   }
 
   // show component based on current step
@@ -47,7 +37,6 @@ export default function CreateIndividual() {
       description="For the purpose on industry regulation, your details are required."
       step={step}
       index={0}
-      previous={previousRef.current}
     >
       <PersonalInfoForm nextStep={nextStep} />
     </FormWrapper>,
@@ -58,7 +47,6 @@ export default function CreateIndividual() {
       description="For the purpose on industry regulation, your details are required."
       step={step}
       index={1}
-      previous={previousRef.current}
     >
       <ResidencyInfoForm nextStep={nextStep} />
     </FormWrapper>,
@@ -69,7 +57,6 @@ export default function CreateIndividual() {
       description="For the purpose on industry regulation, your details are required."
       step={step}
       index={2}
-      previous={previousRef.current}
     >
       <TeamForm nextStep={nextStep} />
     </FormWrapper>,
