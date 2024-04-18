@@ -4,6 +4,7 @@ import { useState } from "react";
 import { LuBriefcase } from "react-icons/lu";
 import { FiUser } from "react-icons/fi";
 import arrowRight from "/public/arrow-right.svg";
+import { motion } from "framer-motion";
 
 type AccountBUttonProps = {
   type: "individual" | "business";
@@ -23,7 +24,9 @@ export default function AccountButton({
   return (
     <div
       className={`flex gap-3 items-center ${
-        hovered ? "shadow-xl bg-[#f5f9ff] outline-1 outline outline-[#1565D8]" : "shadow-md bg-white"
+        hovered
+          ? "shadow-xl bg-[#f5f9ff] outline-1 outline outline-[#1565D8]"
+          : "shadow-md bg-white"
       } transition rounded-[6px] px-5 py-3`}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -43,9 +46,18 @@ export default function AccountButton({
         <h3 className="font-[500] text-[16px]">{title}</h3>
         <p className="font-[400] text-gray text-[14px]">{subtitle}</p>
       </div>
-      <div>
-        <img src={arrowRight} className={hovered ? 'opacity-1' : 'opacity-0'} />
-      </div>
+      <motion.div
+        initial={{ x: 7 }}
+        animate={{ x: -7 }}
+        transition={{
+          ease: "linear",
+          repeat: Infinity,
+          repeatType: "reverse",
+          duration: 0.75,
+        }}
+      >
+        <img src={arrowRight} className={hovered ? "opacity-1" : "opacity-0"} />
+      </motion.div>
     </div>
   );
 }
