@@ -1,5 +1,3 @@
-import React from "react";
-import FormWrapper from "../FormWrapper";
 import TextInput from "../ui/TextInput";
 import PasswordInput from "../ui/PasswordInput";
 import CheckboxInput from "../ui/CheckboxInput";
@@ -10,7 +8,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 type PersonalInfoFormProps = {
-  setStep: React.Dispatch<React.SetStateAction<number>>;
+  nextStep: () => void;
 };
 
 //at least one uppercase letter, one lowercase letter, one number, one special characters, at least 6 chars
@@ -37,7 +35,7 @@ const formSchema = z.object({
   }),
 });
 
-export default function PersonalInfoForm({ setStep }: PersonalInfoFormProps) {
+export default function PersonalInfoForm({ nextStep }: PersonalInfoFormProps) {
   const ctx = useAccountInfoContext();
   if (!ctx) return;
 
@@ -58,48 +56,43 @@ export default function PersonalInfoForm({ setStep }: PersonalInfoFormProps) {
 
   function onSubmit({ name, email, password, terms }: FieldValues) {
     ctx?.setPersonalInfo({ name, email, password, terms });
-    setStep((prev) => prev + 1);
+    nextStep();
   }
 
   return (
-    <FormWrapper
-      title="Register Individual Account!"
-      description="For the purpose on industry regulation, your details are required."
-    >
-      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-10">
-        <TextInput
-          name="name"
-          placeholder="Enter full name"
-          label="Your full name"
-          required
-          register={register}
-          error={errors.name?.message}
-        />
-        <TextInput
-          name="email"
-          placeholder="Enter email address"
-          label="Email address"
-          required
-          register={register}
-          error={errors.email?.message}
-        />
-        <PasswordInput
-          name="password"
-          placeholder="Password"
-          label="Create password"
-          required
-          register={register}
-          error={errors.password?.message}
-        />
-        <CheckboxInput
-          name="terms"
-          error={errors.terms?.message}
-          label={<TermsLabel />}
-          register={register}
-        />
-        <FormSubmitButton>Register Account</FormSubmitButton>
-      </form>
-    </FormWrapper>
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-10">
+      <TextInput
+        name="name"
+        placeholder="Enter full name"
+        label="Your full name"
+        required
+        register={register}
+        error={errors.name?.message}
+      />
+      <TextInput
+        name="email"
+        placeholder="Enter email address"
+        label="Email address"
+        required
+        register={register}
+        error={errors.email?.message}
+      />
+      <PasswordInput
+        name="password"
+        placeholder="Password"
+        label="Create password"
+        required
+        register={register}
+        error={errors.password?.message}
+      />
+      <CheckboxInput
+        name="terms"
+        error={errors.terms?.message}
+        label={<TermsLabel />}
+        register={register}
+      />
+      <FormSubmitButton>Register Account</FormSubmitButton>
+    </form>
   );
 }
 

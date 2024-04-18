@@ -10,7 +10,7 @@ function App() {
       element: <SignUpPage />,
     },
     {
-      path: "/individual",
+      path: "/register",
       element: <CreateIndividual />,
     },
   ]);

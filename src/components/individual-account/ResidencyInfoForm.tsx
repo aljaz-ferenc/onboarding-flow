@@ -1,5 +1,3 @@
-import React from "react";
-import FormWrapper from "../FormWrapper";
 import TextInput from "../ui/TextInput";
 import SelectInput from "../ui/SelectInput";
 import { FieldValues, useForm } from "react-hook-form";
@@ -9,7 +7,7 @@ import { useAccountInfoContext } from "../../context/AccountInfoContext";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 type ResidencyInfoFormProps = {
-  setStep: React.Dispatch<React.SetStateAction<number>>;
+  nextStep: () => void;
 };
 
 const selectOptions = [
@@ -23,7 +21,9 @@ const formSchema = z.object({
   country: z.enum(["SL", "US", "EN"]),
 });
 
-export default function ResidencyInfoForm({ setStep }: ResidencyInfoFormProps) {
+export default function ResidencyInfoForm({
+  nextStep,
+}: ResidencyInfoFormProps) {
   const ctx = useAccountInfoContext();
   if (!ctx) return;
 
@@ -42,31 +42,26 @@ export default function ResidencyInfoForm({ setStep }: ResidencyInfoFormProps) {
 
   function onSubmit({ address, country }: FieldValues) {
     ctx?.setResidencyInfo({ address, country });
-    setStep((prev) => prev + 1);
+    nextStep();
   }
   return (
-    <FormWrapper
-      title="Complete Your Profile!"
-      description="For the purpose on industry regulation, your details are required."
-    >
-      <form className="flex flex-col gap-10" onSubmit={handleSubmit(onSubmit)}>
-        <TextInput
-          name="address"
-          placeholder="Please enter address"
-          register={register}
-          label="Your address"
-          error={errors.address?.message}
-          required
-        />
-        <SelectInput
-          options={selectOptions}
-          label="Country of residence"
-          name="country"
-          register={register}
-          error={errors.country?.message}
-        />
-        <FormSubmitButton>Save & Continue</FormSubmitButton>
-      </form>
-    </FormWrapper>
+    <form className="flex flex-col gap-10" onSubmit={handleSubmit(onSubmit)}>
+      <TextInput
+        name="address"
+        placeholder="Please enter address"
+        register={register}
+        label="Your address"
+        error={errors.address?.message}
+        required
+      />
+      <SelectInput
+        options={selectOptions}
+        label="Country of residence"
+        name="country"
+        register={register}
+        error={errors.country?.message}
+      />
+      <FormSubmitButton>Save & Continue</FormSubmitButton>
+    </form>
   );
 }

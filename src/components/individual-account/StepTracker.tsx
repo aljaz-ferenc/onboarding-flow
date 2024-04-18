@@ -1,20 +1,17 @@
-import React, { SetStateAction } from "react";
 import { IoChevronBackOutline } from "react-icons/io5";
 import data from "../../data/data.json";
-import { useNavigate } from "react-router-dom";
 
 type StepTrackerProps = {
-  step: number;
-  setStep: React.Dispatch<SetStateAction<number>>;
+  previousStep: () => void
+  step: number
 };
 
-export default function StepTracker({ step, setStep }: StepTrackerProps) {
-  const navigate = useNavigate();
+export default function StepTracker({ previousStep, step}: StepTrackerProps) {
   return (
-    <div className="flex w-full justify-between">
+    <div className="flex w-full justify-between mb-20">
       <div
-        onClick={() => (step > 0 ? setStep((prev) => prev - 1) : navigate("/"))}
-        className="text-gray text-[16px] font-[600] flex items-center gap-2"
+        onClick={previousStep}
+        className="text-gray text-[16px] font-[600] flex items-center gap-2 cursor-pointer"
       >
         <IoChevronBackOutline size={20} /> Back
       </div>
