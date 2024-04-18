@@ -2,11 +2,11 @@ import { IoChevronBackOutline } from "react-icons/io5";
 import data from "../../data/data.json";
 
 type StepTrackerProps = {
-  previousStep: () => void
-  step: number
+  previousStep: () => void;
+  step: number;
 };
 
-export default function StepTracker({ previousStep, step}: StepTrackerProps) {
+export default function StepTracker({ previousStep, step }: StepTrackerProps) {
   return (
     <div className="flex w-full justify-between mb-20">
       <div

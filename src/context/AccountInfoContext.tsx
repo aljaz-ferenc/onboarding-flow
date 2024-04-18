@@ -16,13 +16,13 @@ type AccountInfoContextType = {
 };
 
 const initialValue: AccountInfo = {
-  accountType: '',
+  accountType: "",
   name: "",
   email: "",
   password: "",
   terms: false,
   address: "",
-  country: '',
+  country: "",
   team: [],
 };
 

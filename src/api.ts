@@ -21,7 +21,7 @@ export async function registerUser(payload: AccountInfo) {
     if (!result.success) {
       throw result.error;
     }
-    console.log(result.data)
+    console.log(result.data);
 
     //send request if validation passes
     const response = await fetch("http://localhost:3000/api/register", {

@@ -1,9 +1,9 @@
-import polyOutline from "/public/poly-outline.svg";
-import polyFull from "/public/poly-full.svg";
+import polyOutline from "/poly-outline.svg";
+import polyFull from "/poly-full.svg";
 import { useState } from "react";
 import { LuBriefcase } from "react-icons/lu";
 import { FiUser } from "react-icons/fi";
-import arrowRight from "/public/arrow-right.svg";
+import arrowRight from "/arrow-right.svg";
 import { motion } from "framer-motion";
 
 type AccountBUttonProps = {

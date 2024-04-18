@@ -37,7 +37,7 @@ export default function PageDescription({ text }: PageDescriptionProps) {
             animate="animate"
             exit="initial"
           >
-            <img src="/public/quote.svg" className="block mb-5" />
+            <img src="/quote.svg" className="block mb-5" />
             {text}
           </motion.p>
           <motion.img
@@ -46,11 +46,11 @@ export default function PageDescription({ text }: PageDescriptionProps) {
             transition={{ duration: animationDuration }}
             animate="animate"
             exit="initial"
-            src="/public/square.svg"
+            src="/square.svg"
             className="absolute right-0 bottom-0 translate-y-[50%] translate-x-[50%] "
           />
           <img
-            src="/public/dots.svg"
+            src="/dots.svg"
             className="absolute top-0 right-0 translate-y-[-300%] translate-x-[-80%]"
           />
         </div>

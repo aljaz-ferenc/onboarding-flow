@@ -1,7 +1,7 @@
 import { easeOut, motion } from "framer-motion";
 import React from "react";
 import Header from "./Header";
-import padlock from "/public/padlock.svg";
+import padlock from "/padlock.svg";
 
 type FormWrapperProps = {
   title: string;

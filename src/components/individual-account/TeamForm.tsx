@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FieldValues, useFieldArray, useForm } from "react-hook-form";
-import trashIcon from "/public/trash.svg";
-import plusIcon from "/public/plus.svg";
+import trashIcon from "/trash.svg";
+import plusIcon from "/plus.svg";
 import FormSubmitButton from "../ui/FormSubmitButton";
 import { useAccountInfoContext } from "../../context/AccountInfoContext";
 import { zodResolver } from "@hookform/resolvers/zod";
