@@ -11,9 +11,6 @@ The task was to create a frontend project that represents an onboarding flow wit
 
 ## Key Features
 
-### Forms
-Since I followed a predefined design, I decided not to use a UI library but to create my own custom input fields, that can be used with react-hook-form.
-
 ### Validation
 Form data is first validated on every screen. If the validation passes, the data is stored in context. Before sending the data to a server, the final payload is validated again in the request handler. 
 
