@@ -1,24 +1,38 @@
 import React from "react";
 import FormWrapper from "../FormWrapper";
-import { useFieldArray, useForm } from "react-hook-form";
+import { FieldValues, useFieldArray, useForm } from "react-hook-form";
 import trashIcon from "/public/trash.svg";
 import plusIcon from "/public/plus.svg";
 import FormSubmitButton from "../ui/FormSubmitButton";
+import { useAccountInfoContext } from "../../context/AccountInfoContext";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 
-type PersonalInfoFormProps = {
-  setStep: React.Dispatch<React.SetStateAction<number>>;
-};
+const emailSchema = z.object({
+  team: z.array(
+    z.object({
+      email: z.string().email(),
+    })
+  ),
+});
 
-export default function TeamForm({ setStep }: PersonalInfoFormProps) {
+export default function TeamForm() {
+  const ctx = useAccountInfoContext()
+  
   const {
     register,
     control,
+    handleSubmit,
     formState: { errors },
-  } = useForm();
-  const { fields, append, remove } = useFieldArray({ control, name: "team" });
+  } = useForm({ resolver: zodResolver(emailSchema)});
+  const { fields, append, remove } = useFieldArray({ control, name: "team"});
+  
+  function onSubmit({team}: FieldValues) {
+    if(!ctx) return
+    const emails = team.map((member: {email: string}) => member.email)
+    ctx.setTeam(emails)
 
-  function onSubmit() {
-    setStep((prev) => prev + 1);
+    console.log({...ctx.info, team: emails})
   }
 
   return (
@@ -26,7 +40,7 @@ export default function TeamForm({ setStep }: PersonalInfoFormProps) {
       title="Invite your team"
       description="For the purpose on industry regulation, your details are required."
     >
-      <form className="flex flex-col gap-3" onSubmit={onSubmit}>
+      <form className="flex flex-col gap-3" onSubmit={handleSubmit(onSubmit)}>
         <label className="form-label font-[500] text-[16px]">
           Teammate email
         </label>
