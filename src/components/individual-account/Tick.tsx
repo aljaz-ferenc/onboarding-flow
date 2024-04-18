@@ -1,7 +1,11 @@
 import { motion } from "framer-motion";
 
-export default function Tick() {
-  const variants = {
+type TickProps = {
+  isActive: boolean;
+};
+
+export default function Tick({ isActive }: TickProps) {
+  const tickVariants = {
     initial: {
       strokeDasharray: 100,
       strokeDashoffset: 100,
@@ -10,13 +14,29 @@ export default function Tick() {
       strokeDasharray: 100,
       strokeDashoffset: 0,
       transition: {
+        delay: 0.5,
         duration: 2,
       },
     },
   };
 
+  const svgVariants = {
+    initial: {
+      scaleY: 0.5,
+    },
+    animate: {
+      scaleY: 1,
+      transition: {
+        duration: 0.5,
+      },
+    },
+  };
+
   return (
-    <svg
+    <motion.svg
+      variants={svgVariants}
+      initial="initial"
+      animate={isActive ? "animate" : "initial"}
       width="158"
       height="144"
       viewBox="0 0 158 144"
@@ -65,9 +85,9 @@ export default function Tick() {
           strokeWidth="8"
           strokeLinecap="round"
           strokeLinejoin="round"
-          variants={variants}
-          initial='initial'
-          animate='animate'
+          variants={tickVariants}
+          initial="initial"
+          animate={isActive ? "animate" : "initial"}
         />
       </g>
       <defs>
@@ -106,6 +126,6 @@ export default function Tick() {
           />
         </filter>
       </defs>
-    </svg>
+    </motion.svg>
   );
 }
