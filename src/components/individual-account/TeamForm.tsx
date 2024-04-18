@@ -49,7 +49,6 @@ export default function TeamForm({ nextStep }: TeamForProps) {
       nextStep();
     } catch (err) {
       console.error(err);
-      console.log(payload)
       nextStep(); //the request will fail but in this case we still move to the success page
     } finally {
       setIsFetching(false);
